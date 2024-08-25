@@ -29,10 +29,6 @@ const TodoLists = () => {
     setIsOpen(true);
   };
 
-  const handleDesToggle = (id) => {
-    setOpenTodoId((prevId) => (prevId === id ? null : id));
-  };
-
   const handleCheckboxChange = (id) => {
     console.log(id);
     handleCheckbox(id);
@@ -61,20 +57,7 @@ const TodoLists = () => {
                 tailwindClasses="bg-blue-500 p-[4px] rounded-full"
                 clickButton={() => handleDeleteTodo(item.id)}
               />
-              <Button
-                text={<FaAngleDown className="hover:text-slate-200 text-sm" />}
-                tailwindClasses="bg-blue-500 p-[4px] rounded-full"
-                clickButton={() => handleDesToggle(item.id)}
-              />
             </div>
-          </div>
-          <div
-            className={`min-h-20 bg-white py-2 px-3 w-[95%] rounded-md ml-auto mt-2 ${
-              openTodoId === item.id ? "block" : "hidden"
-            }`}
-          >
-            <h6 className="font-bold">Description</h6>
-            <p className="h-20 overflow-auto">{item.todoDes} </p>
           </div>
         </div>
       ))}

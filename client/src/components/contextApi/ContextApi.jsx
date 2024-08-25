@@ -9,7 +9,6 @@ export const TodoContext = createContext();
 
 const TodoProvider = ({ children }) => {
   const [todo, setTodo] = useState("");
-  const [todoDes, setTodoDes] = useState("");
   const [todoList, setTodoList] = useState([]);
   const [todoData, setTodoData] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +35,6 @@ const TodoProvider = ({ children }) => {
         const newTodo = {
           id: Number(uuidv4()),
           todo: todo,
-          todoDes: todoDes,
           isImportant: false,
         };
         console.log(typeof newTodo.id);
@@ -50,7 +48,6 @@ const TodoProvider = ({ children }) => {
         });
 
         setTodo("");
-        setTodoDes("");
         setIsOpen(false);
         // toast.success("Todo added successfully");
       } catch (error) {
@@ -92,7 +89,6 @@ const TodoProvider = ({ children }) => {
     const updatedTodo = {
       ...todoList[index],
       todo: todo,
-      todoDes: todoDes,
     };
 
     try {
@@ -139,8 +135,6 @@ const TodoProvider = ({ children }) => {
         editTodo,
         todo,
         setTodo,
-        todoDes,
-        setTodoDes,
         isEdit,
         setIsEdit,
         saveTodo,

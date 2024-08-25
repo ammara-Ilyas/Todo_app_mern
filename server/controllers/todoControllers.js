@@ -2,7 +2,7 @@ import Todo from "../models/Todo.js";
 
 export const createTodo = async (req, res) => {
   try {
-    const { todo, todoDes, isImportant, id } = req.body;
+    const { todo, isImportant, id } = req.body;
     // if (!todo || isImportant === undefined || !id) {
     //   return res.status(400).json({ message: "Missing required fields" });
     // }
@@ -14,7 +14,6 @@ export const createTodo = async (req, res) => {
     const newTodo = new Todo({
       id,
       todo,
-      description: todoDes,
       isImportant,
     });
     console.log("new", newTodo);

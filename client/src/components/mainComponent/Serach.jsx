@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 import Button from "../widgets/Button";
+import { ImCross } from "react-icons/im";
+
 import { TodoContext } from "../contextApi/ContextApi";
 
 const Search = () => {
@@ -8,9 +10,7 @@ const Search = () => {
     isOpen,
     setIsOpen,
     todo,
-    todoDes,
     setTodo,
-    setTodoDes,
     isEdit,
     setIsEdit,
     saveTodo,
@@ -19,16 +19,13 @@ const Search = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("todo", todo);
-    console.log("destodo", todoDes);
     addTodo();
     setTodo("");
-    setTodoDes("");
   };
 
   const handleSave = () => {
     saveTodo();
     setTodo("");
-    setTodoDes("");
     setIsOpen(false);
     setIsEdit(false);
   };
@@ -41,9 +38,14 @@ const Search = () => {
     >
       <div className="flex items-center h-full">
         <form
-          className="h-[60%] w-[75%] lg:w-[60%] xl:w-1/2 mx-auto rounded-md gap-10 p-4 bg-white flex flex-col justify-center"
+          className="h-[60%] relative w-[75%] lg:w-[60%] xl:w-1/2 mx-auto rounded-md gap-10 p-4 bg-white flex flex-col justify-center"
           onSubmit={handleSubmit}
         >
+          <ImCross
+            className="absolute top-4 right-5 cursor-pointer"
+            onClick={() => setIsOpen(false)}
+          />{" "}
+          <p>Write todo</p>
           <input
             type="text"
             className="border-2 outline-none p-2 placeholder:text-sm capitalize"
@@ -51,15 +53,6 @@ const Search = () => {
             value={todo}
             onChange={(e) => setTodo(e.target.value)}
           />
-          <textarea
-            className="border-2 outline-none p-2 placeholder:text-sm"
-            rows={5}
-            placeholder={`${
-              isEdit ? "Update description..." : "Write description...."
-            }`}
-            value={todoDes}
-            onChange={(e) => setTodoDes(e.target.value)}
-          ></textarea>
           {isEdit ? (
             <Button
               text="Save todo"
