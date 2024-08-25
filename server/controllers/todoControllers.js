@@ -1,5 +1,5 @@
 import Todo from "../models/Todo.js";
-
+import mongoose from "mongoose";
 export const createTodo = async (req, res) => {
   try {
     const { todo, isImportant, id } = req.body;
@@ -56,13 +56,23 @@ export const deleteTodo = async (req, res) => {
   try {
     const { id } = req.params;
     console.log("id", id);
+    if (!id) {
+      return res.status(400).json({ message: "ID parameter is required" });
+    }
 
-    // Find and delete the todo by ID
-    const deletedTodo = await Todo.findByIdAndDelete(id);
+    // console.log("delete 1");
+    const findDelete = await Todo.findOne({ id });
+    if (!findDelete) {
+      return res.status(404).json({ message: "Todo not found" });
+    }
+    // console.log("delete 2");
+    const deletedTodo = await Todo.findOneAndDelete({ id });
 
     if (!deletedTodo) {
       return res.status(404).json({ message: "Todo not found" });
     }
+
+    console.log("delete 3");
 
     res.status(200).json({ message: "Todo deleted successfully" });
   } catch (error) {

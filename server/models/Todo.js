@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const todoSchema = new mongoose.Schema({
-  id: { type: Number, unique: true },
+  id: { type: String, unique: true },
   todo: { type: String, required: true },
   isImportant: { type: Boolean, default: false },
 });
