@@ -33,7 +33,7 @@ const TodoProvider = ({ children }) => {
     if (todo.trim() !== "") {
       try {
         const newTodo = {
-          id: Number(uuidv4()),
+          id: Math.random() * 100000,
           todo: todo,
           isImportant: false,
         };
@@ -46,8 +46,9 @@ const TodoProvider = ({ children }) => {
           },
           body: JSON.stringify(newTodo),
         });
-
         setTodo("");
+        setTodoList((preTodos) => [...preTodos, newTodo]);
+        setTodoData((preTodos) => [...preTodos, newTodo]);
         setIsOpen(false);
         // toast.success("Todo added successfully");
       } catch (error) {

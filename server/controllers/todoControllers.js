@@ -12,7 +12,7 @@ export const createTodo = async (req, res) => {
     // }
     console.log("user created 1");
     const newTodo = new Todo({
-      id,
+      id: id,
       todo,
       isImportant,
     });
@@ -20,7 +20,7 @@ export const createTodo = async (req, res) => {
 
     console.log("user created 2");
     const addTodo = await newTodo.save();
-    res.status(201).send(newTodo);
+    res.status(201).send(addTodo);
     console.log("user created 3");
   } catch (error) {
     res.status(400).send(error);
