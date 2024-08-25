@@ -1,9 +1,7 @@
 "use client";
 import React, { createContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import "react-toastify/dist/ReactToastify.css";
 
 export const TodoContext = createContext();
 
@@ -50,23 +48,23 @@ const TodoProvider = ({ children }) => {
         setTodoList((preTodos) => [...preTodos, newTodo]);
         setTodoData((preTodos) => [...preTodos, newTodo]);
         setIsOpen(false);
-        // toast.success("Todo added successfully");
       } catch (error) {
         console.error("Failed to add todo: ", error);
-        // toast.error("Error adding todo: " + error);
       }
     } else {
-      toast.warn("Please fill in all fields.");
+      console.log("Please fill in all fields.");
     }
   };
 
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`/api/todos/${id}`);
+      console.log(id, "id");
+      const res = await axios.delete(`/api/todos/${id}`);
+
+      console.log("res", res.json());
       setTodoList((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
     } catch (error) {
       console.error("Failed to delete todo: ", error);
-      // toast.error("Error deleting todo: " + error);
     }
   };
 
@@ -74,7 +72,6 @@ const TodoProvider = ({ children }) => {
     const item = todoList.find((item) => item.id === id);
     if (item) {
       setTodo(item.todo);
-      setTodoDes(item.todoDes);
       setIsEdit(true);
       setEditTodoId(id);
     }
@@ -83,7 +80,8 @@ const TodoProvider = ({ children }) => {
   const saveTodo = async () => {
     const index = todoList.findIndex((item) => item.id === editTodoId);
     if (index === -1) {
-      toast.error("Todo not found");
+      console.log("not present");
+
       return;
     }
 
@@ -91,12 +89,17 @@ const TodoProvider = ({ children }) => {
       ...todoList[index],
       todo: todo,
     };
+    setTodoList([updatedTodo]);
 
     try {
+      console.log("eidt", editTodoId);
+
       const response = await axios.put(
         `http://localhost:5000/api/todos/${editTodoId}`,
         updatedTodo
       );
+      console.log(response.data);
+
       const updatedTodoFromResponse = response.data;
 
       let updatedTodos = [...todoList];
@@ -104,11 +107,8 @@ const TodoProvider = ({ children }) => {
 
       setTodoList(updatedTodos);
       setTodoData(updatedTodos);
-
-      toast.success("Todo updated successfully");
     } catch (error) {
       console.error("Failed to update todo: ", error);
-      toast.error("Error updating todo: " + error);
     }
   };
 
@@ -143,7 +143,6 @@ const TodoProvider = ({ children }) => {
       }}
     >
       {children}
-      <ToastContainer theme="light" position="top-center" />
     </TodoContext.Provider>
   );
 };

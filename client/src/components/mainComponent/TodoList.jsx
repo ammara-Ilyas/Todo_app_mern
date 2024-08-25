@@ -19,7 +19,7 @@ const TodoLists = () => {
     todoContext;
 
   const handleDeleteTodo = (id) => {
-    console.log(id);
+    console.log("id in del", id);
     deleteTodo(id);
   };
 
@@ -36,8 +36,8 @@ const TodoLists = () => {
 
   return (
     <div className="w-[100%] sm:w-[95%] md:w-[85%] lg:w-[70%] xl:w-[60%] mx-auto overflow-y-auto h-[70%] p-4 scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-white scrollbar-corner-rounded-full scrollbar-corner-blue-500 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
-      {todoList.map((item) => (
-        <div key={item.id} className="flex flex-col w-full my-3">
+      {todoList.map((item, i) => (
+        <div key={i} className="flex flex-col w-full my-3">
           <div className="bg-white w-[100%] sm:w-[95%] flex items-center justify-between text-xl p-3 h-[45px] rounded-md">
             <div className="flex items-center justify-center gap-2">
               <Checkbox

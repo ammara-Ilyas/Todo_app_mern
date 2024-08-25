@@ -3,22 +3,14 @@ import Todo from "../models/Todo.js";
 export const createTodo = async (req, res) => {
   try {
     const { todo, isImportant, id } = req.body;
-    // if (!todo || isImportant === undefined || !id) {
-    //   return res.status(400).json({ message: "Missing required fields" });
-    // }
-    // const existingTodo = await Todo.findOne({ id: id });
-    // if (existingTodo) {
-    //   return res.status(409).send("A todo with the given ID already exists.");
-    // }
-    console.log("user created 1");
+    // console.log("user created 1");
     const newTodo = new Todo({
       id: id,
       todo,
       isImportant,
     });
     console.log("new", newTodo);
-
-    console.log("user created 2");
+    // console.log("user created 2");
     const addTodo = await newTodo.save();
     res.status(201).send(addTodo);
     console.log("user created 3");
@@ -42,11 +34,17 @@ export const updateTodo = async (req, res) => {
   try {
     console.log("use", req.params.id, req.body);
 
-    const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-    if (!updatedTodo) return res.status(404).send();
-    console.log("update", updateTodo);
+    const updatedTodo = await Todo.updateOne(
+      { id: req.params.id },
+      {
+        $set: req.body,
+      },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedTodo) return res.status(404).send("todo not found");
+
+    console.log("update", updatedTodo);
 
     res.status(200).send(updatedTodo);
   } catch (error) {
@@ -56,8 +54,9 @@ export const updateTodo = async (req, res) => {
 
 export const deleteTodo = async (req, res) => {
   try {
-    console.log(req.params.id);
+    console.log(req.body);
 
+    console.log("id", req.params.id);
     await Todo.findByIdAndDelete(req.params.id);
     res.status(204).json("deleted");
   } catch (error) {
