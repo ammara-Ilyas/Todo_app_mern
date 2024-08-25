@@ -19,7 +19,7 @@ const TodoProvider = ({ children }) => {
 
   const fetchAllTodos = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/todos");
+      const response = await axios.get("/api/todos");
       setTodoList(response.data);
       setTodoData(response.data);
     } catch (error) {
@@ -31,13 +31,13 @@ const TodoProvider = ({ children }) => {
     if (todo.trim() !== "") {
       try {
         const newTodo = {
-          id: Math.random() * 100000,
+          id: uuidv4(),
           todo: todo,
           isImportant: false,
         };
         console.log(typeof newTodo.id);
 
-        await fetch("http://localhost:5000/api/todos/", {
+        await fetch("/api/todos/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -61,10 +61,12 @@ const TodoProvider = ({ children }) => {
       console.log(id, "id");
 
       // Make the DELETE request
-      const res = await axios.get(`/api/todos/${id}`);
-
+      const res = await fetch(`api/todos/${id}`, {
+        method: "Delete",
+      });
+      const data = res.json();
       // Log the response data
-      console.log("res", res.data);
+      console.log("res");
 
       // Update the state to remove the deleted todo
       setTodoList((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
@@ -102,10 +104,7 @@ const TodoProvider = ({ children }) => {
     setTodoData(updatedTodoList);
     try {
       console.log("eidt", editTodoId);
-      const response = await axios.put(
-        `http://localhost:5000/api/todos/${editTodoId}`,
-        updatedTodo
-      );
+      const response = await axios.put(`api/todos/${editTodoId}`, updatedTodo);
       console.log(response.data);
 
       const updatedTodoFromResponse = response.data;

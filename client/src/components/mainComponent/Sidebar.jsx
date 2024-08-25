@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Aside from "./Aside";
-// import avtar from "../../assets/images/avatar.png";
-
+import avatar from "../../assets/images/avatar.png";
 import { SiTodoist } from "react-icons/si";
 import { IoSettingsSharp } from "react-icons/io5";
 import { GrSchedulePlay } from "react-icons/gr";
@@ -23,11 +22,11 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           </div>
           <div className="flex gap-10 h-full w-full mt-10 flex-col">
             <div className="border-b-purple-500 border-b-[3px] w-[90%] xl:w-[80%] h-[20%] mx-auto flex justify-center gap-3 items-center">
-              {/* <img
-                src={avtar}
+              <img
+                src={avatar}
                 alt="Avatar"
                 className="w-[60px] h-[60px] rounded-full"
-              /> */}
+              />
               <div>
                 <p className="font-bold">Do-it</p>
                 <p className="text-purple-600">Ammara Ilyas</p>
@@ -55,11 +54,11 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       <div className="w-[32%] xl:w-[25%] h-full hidden md:block">
         <div className="flex gap-10 h-full w-full mt-10 flex-col">
           <div className="border-b-purple-500 border-b-[3px] w-[90%] xl:w-[80%] h-[20%] mx-auto flex justify-center gap-3 items-center">
-            {/* <img
-              src={avtar}
+            <img
+              src={avatar}
               alt="Avatar"
               className="w-[60px] h-[60px] rounded-full"
-            /> */}
+            />
             <div>
               <p className="font-bold">Do-it</p>
               <p className="text-purple-600">Ammara Ilyas</p>

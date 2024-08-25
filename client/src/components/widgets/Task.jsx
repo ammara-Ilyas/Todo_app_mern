@@ -12,52 +12,52 @@ const Button = () => {
 
   const { setTodoList, todoList } = todoContext;
 
-  const handleAll = () => {
-    setTodoList(todoList);
-    setActiveItem("all");
-  };
+  // const handleAll = () => {
+  //   setTodoList(todoList);
+  //   setActiveItem("all");
+  // };
 
-  const handleImportant = () => {
-    const importantTodos = todoList.filter(
-      (item) => item.isImportant !== false
-    );
-    console.log(importantTodos);
-    setTodoList(importantTodos);
-    setActiveItem("important");
-  };
+  // const handleImportant = () => {
+  //   const importantTodos = todoList.filter(
+  //     (item) => item.isImportant !== false
+  //   );
+  //   console.log(importantTodos);
+  //   setTodoList(importantTodos);
+  //   setActiveItem("important");
+  // };
 
-  const handleOther = () => {
-    const otherTodos = todoList.filter((item) => item.isImportant === false);
-    console.log(otherTodos);
-    setTodoList(otherTodos);
-    setActiveItem("other");
-  };
+  // const handleOther = () => {
+  //   const otherTodos = todoList.filter((item) => item.isImportant === false);
+  //   console.log(otherTodos);
+  //   setTodoList(otherTodos);
+  //   setActiveItem("other");
+  // };
 
   const getItemClasses = (item) =>
     `w-[12px] h-[12px] rounded-full ${
-      activeItem === item ? "bg-purple-500" : "bg-blue-400"
-    } hover:bg-purple-500 active:bg-purple-500`;
+      activeItem === item ? "bg-blue-700" : "bg-blue-400"
+    } hover:bg-blue-500 active:bg-blue-500`;
 
   return (
     <div>
       <ul className="w-[75%] ml-auto flex flex-col gap-2">
         <li
           className="flex items-center gap-2 cursor-pointer"
-          onClick={handleAll}
+          // onClick={handleAll}
         >
           <span className={getItemClasses("all")}></span>
           All Tasks
         </li>
         <li
           className="flex items-center gap-2 cursor-pointer"
-          onClick={handleImportant}
+          // onClick={handleImportant}
         >
           <span className={getItemClasses("important")}></span>
           Important
         </li>
         <li
           className="flex items-center gap-2 cursor-pointer"
-          onClick={handleOther}
+          // onClick={handleOther}
         >
           <span className={getItemClasses("other")}></span>
           Other
