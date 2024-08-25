@@ -7,10 +7,11 @@ import {
 } from "../controllers/todoControllers.js";
 
 const router = Router();
+console.log("route");
 
 router.post("/", createTodo);
 router.get("/", getAllTodos);
+router.get("/:id", deleteTodo);
 router.put("/:id", updateTodo);
-router.delete("/:id", deleteTodo);
 
 export default router;

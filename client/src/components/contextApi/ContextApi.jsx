@@ -59,9 +59,14 @@ const TodoProvider = ({ children }) => {
   const deleteTodo = async (id) => {
     try {
       console.log(id, "id");
-      const res = await axios.delete(`/api/todos/${id}`);
 
-      console.log("res", res.json());
+      // Make the DELETE request
+      const res = await axios.get(`/api/todos/${id}`);
+
+      // Log the response data
+      console.log("res", res.data);
+
+      // Update the state to remove the deleted todo
       setTodoList((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
     } catch (error) {
       console.error("Failed to delete todo: ", error);
@@ -89,11 +94,14 @@ const TodoProvider = ({ children }) => {
       ...todoList[index],
       todo: todo,
     };
-    setTodoList([updatedTodo]);
 
+    const updatedTodoList = [...todoList];
+    updatedTodoList[index] = updatedTodo;
+
+    setTodoList(updatedTodoList);
+    setTodoData(updatedTodoList);
     try {
       console.log("eidt", editTodoId);
-
       const response = await axios.put(
         `http://localhost:5000/api/todos/${editTodoId}`,
         updatedTodo
