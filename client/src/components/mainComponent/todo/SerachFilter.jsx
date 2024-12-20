@@ -1,7 +1,7 @@
 "use client";
 import React, { useContext } from "react";
-import Button from "../widgets/Button";
-import { TodoContext } from "../contextApi/ContextApi";
+import Button from "../../widgets/Button";
+import { TodoContext } from "../../contextApi/ContextApi";
 
 const SearchFilter = () => {
   const { isOpen, setIsOpen } = useContext(TodoContext);

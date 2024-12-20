@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
-import Button from "../widgets/Button";
+import React, { useContext } from "react";
+import Button from "../../widgets/Button";
 import { ImCross } from "react-icons/im";
 
-import { TodoContext } from "../contextApi/ContextApi";
+import { TodoContext } from "../../contextApi/ContextApi";
 
 const Search = () => {
   const {

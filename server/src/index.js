@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import handleDbConnection from "./db.js";
 import router from "../routes/todo.js";
-
+import route from "../routes/auth.js";
 // Load environment variables
 dotenv.config();
 
@@ -26,10 +26,12 @@ app.use(express.json());
 
 // Database connection
 const url = process.env.MONGODB_URI;
+console.log("url", url);
 handleDbConnection(url);
 
 // Use routes
 app.use("/api/todos", router);
+app.use("/api/auth", route);
 
 // Start the app
 const port = process.env.PORT || 8000;

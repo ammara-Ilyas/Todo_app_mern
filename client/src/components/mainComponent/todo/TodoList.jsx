@@ -1,8 +1,8 @@
 "use client";
 import React, { useContext, useState } from "react";
-import Checkbox from "../widgets/Checkbox";
-import Button from "../widgets/Button";
-import { TodoContext } from "../contextApi/ContextApi";
+import Checkbox from "../../widgets/Checkbox";
+import Button from "../../widgets/Button";
+import { TodoContext } from "../../contextApi/ContextApi";
 import { MdEditNote } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 

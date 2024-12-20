@@ -1,5 +1,5 @@
 import React from "react";
-import SecMain from "./mainComponent/SecMain";
+import SecMain from "./mainComponent/todo/SecMain";
 
 const Main = () => {
   return (

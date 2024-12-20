@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Aside from "./Aside";
-import avatar from "../../assets/images/avatar.png";
+import avatar from "../../../assets/images/avatar.png";
 import { SiTodoist } from "react-icons/si";
 import { IoSettingsSharp } from "react-icons/io5";
 import { GrSchedulePlay } from "react-icons/gr";
 import { RxCross2 } from "react-icons/rx";
-import Button from "../widgets/Task";
-import Lists from "../widgets/List";
+import Button from "../../widgets/Task";
+import Lists from "../../widgets/List";
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
   const handleCloseNav = () => {
